@@ -50,6 +50,9 @@ pub fn yacc_args(tokens: TokenStream) -> TokenStream {
         let format_arg = match color {
             None => format!("{{{format}}}", format=format),
             Some("red") => format!(color_str!("{{{format}}}", "red!"), format=format),
+            Some("blue") => format!(color_str!("{{{format}}}", "blue!"), format=format),
+            Some("yellow") => format!(color_str!("{{{format}}}", "yellow!"), format=format),
+            Some("green") => format!(color_str!("{{{format}}}", "green!"), format=format),
             Some(c) => unimplemented!("Color {} is not supported", c),
         };
         format_arg
