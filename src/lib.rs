@@ -1,13 +1,28 @@
 #[macro_use]
+extern crate lazy_static;
+
+#[macro_use]
 extern crate proc_macro;
 
 #[macro_use]
 extern crate quote;
 
+extern crate regex;
+
 use proc_macro::{
+    Delimiter::Parenthesis,
     TokenStream,
     TokenTree::*,
+    Span,
 };
+use regex::Regex;
+use std::iter::FromIterator;
+
+macro_rules! color_str {
+    ($s:literal, $color:literal $(,)?) => {
+        concat!($color, $s, "!reset")
+    }
+}
 
 #[proc_macro]
 pub fn yacc_format(tokens: TokenStream) -> TokenStream {
@@ -25,9 +40,30 @@ pub fn yacc_format(tokens: TokenStream) -> TokenStream {
         _ => return TokenStream::from(quote!{ compile_error!("First argument must be a literal string") }),
     };
 
-    let tokens = quote! {
-        compile_error!("`yacc_format!` is not implemented");
+    lazy_static! {
+        static ref YACC_ARG: Regex = Regex::new(r"\{(P<format>.*);(P<color>.+)\}").unwrap();
+    }
+    let format_str = YACC_ARG.replace_all(&format_str, |captures: &regex::Captures| {
+        let format = captures.name("format").map(|m| m.as_str()).unwrap_or("");
+        let color = captures.name("color").map(|m| m.as_str());
+        let format_arg = match color {
+            None => format!("{{{format}}}", format=format),
+            Some("red") => format!(color_str!("{{{format}}}", "red!"), format=format),
+            Some(c) => unimplemented!("Color {} is note supported", c),
+        };
+        format_arg
+    });
+
+    let format_str = quote! {
+        #format_str
     };
 
-    TokenStream::from(tokens)
+    let format_str = TokenStream::from(format_str);
+    let remaining_tokens = TokenStream::from_iter(tokens);
+    let format_args = TokenStream::from_iter(vec![format_str, remaining_tokens].into_iter());
+    let format_args_group: proc_macro::TokenTree = proc_macro::Group::new(Parenthesis, format_args).into();
+    let format_macro: proc_macro::TokenTree = proc_macro::Ident::new("format!", Span::call_site()).into();
+
+    let all_tokens = vec![format_macro, format_args_group].into_iter();
+    TokenStream::from_iter(all_tokens)
 }
