@@ -10,7 +10,7 @@ use proc_macro::{
 };
 
 #[proc_macro]
-pub fn color_format(tokens: TokenStream) -> TokenStream {
+pub fn yacc_format(tokens: TokenStream) -> TokenStream {
     let mut tokens = tokens.into_iter();
     let format_str = match tokens.next() {
         None => return TokenStream::from( quote! { format!() }),
