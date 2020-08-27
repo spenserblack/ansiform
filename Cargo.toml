@@ -10,4 +10,7 @@ keywords = ["color", "terminal", "ansi", "macro"]
 categories = ["command-line-interface"]
 repository = "https://github.com/spenserblack/yacc"
 
+[lib]
+proc-macro = true
+
 [dependencies]
