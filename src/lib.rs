@@ -21,7 +21,7 @@ use std::str::FromStr;
 
 macro_rules! color_str {
     ($s:literal, $color:literal $(,)?) => {
-        concat!($color, $s, "!reset")
+        concat!($color, $s, "\u{001b}[0m")
     }
 }
 
@@ -49,10 +49,10 @@ pub fn yacc(tokens: TokenStream) -> TokenStream {
         let color = captures.name("color").map(|m| m.as_str());
         let format_arg = match color {
             None => format!("{{{format}}}", format=format),
-            Some("red") => format!(color_str!("{{{format}}}", "red!"), format=format),
-            Some("blue") => format!(color_str!("{{{format}}}", "blue!"), format=format),
-            Some("yellow") => format!(color_str!("{{{format}}}", "yellow!"), format=format),
-            Some("green") => format!(color_str!("{{{format}}}", "green!"), format=format),
+            Some("red") => format!(color_str!("{{{format}}}", "\u{001b}[31m"), format=format),
+            Some("green") => format!(color_str!("{{{format}}}", "\u{001b}[32m"), format=format),
+            Some("yellow") => format!(color_str!("{{{format}}}", "\u{001b}[33m"), format=format),
+            Some("blue") => format!(color_str!("{{{format}}}", "\u{001b}[34m"), format=format),
             Some(c) => unimplemented!("Color {} is not supported", c),
         };
         format_arg
