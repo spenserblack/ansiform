@@ -14,3 +14,4 @@ repository = "https://github.com/spenserblack/yacc"
 proc-macro = true
 
 [dependencies]
+quote = "1.0"
