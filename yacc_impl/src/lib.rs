@@ -5,6 +5,9 @@ extern crate lazy_static;
 extern crate proc_macro;
 
 #[macro_use]
+extern crate proc_macro_hack;
+
+#[macro_use]
 extern crate quote;
 
 extern crate regex;
@@ -25,7 +28,7 @@ macro_rules! color_str {
     }
 }
 
-#[proc_macro]
+#[proc_macro_hack]
 pub fn yacc_args(tokens: TokenStream) -> TokenStream {
     let mut tokens = tokens.into_iter();
     let format_str = match tokens.next() {
