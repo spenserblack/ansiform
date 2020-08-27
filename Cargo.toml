@@ -6,7 +6,7 @@ edition = "2018"
 license = "MIT OR Apache-2.0"
 description = "Color terminal output with macros"
 readme = "README.md"
-keywords = []
+keywords = ["color", "terminal", "ansi", "macro"]
 categories = []
 repository = "https://github.com/spenserblack/yacc"
 
