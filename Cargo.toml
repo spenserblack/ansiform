@@ -2,7 +2,7 @@
 name = "yacc"
 version = "0.0.1"
 authors = ["Spenser Black <spenserblack01@gmail.com>"]
-edition = "2018"
+edition = "2015"
 license = "MIT OR Apache-2.0"
 description = "Color terminal output with macros"
 readme = "README.md"
