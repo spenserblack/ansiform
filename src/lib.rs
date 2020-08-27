@@ -1,7 +1,6 @@
 #[macro_use]
 extern crate lazy_static;
 
-#[macro_use]
 extern crate proc_macro;
 
 #[macro_use]
@@ -10,14 +9,10 @@ extern crate quote;
 extern crate regex;
 
 use proc_macro::{
-    Delimiter::Parenthesis,
     TokenStream,
     TokenTree::*,
-    Span,
 };
 use regex::Regex;
-use std::iter::FromIterator;
-use std::str::FromStr;
 
 macro_rules! color_str {
     ($s:literal, $color:literal $(,)?) => {
