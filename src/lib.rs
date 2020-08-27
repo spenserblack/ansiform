@@ -14,12 +14,6 @@ use proc_macro::{
 };
 use regex::Regex;
 
-macro_rules! color_str {
-    ($s:literal, $color:literal $(,)?) => {
-        concat!($color, $s, "\u{001b}[0m")
-    }
-}
-
 #[proc_macro]
 pub fn yacc(tokens: TokenStream) -> TokenStream {
     let mut tokens = tokens.into_iter();
@@ -37,22 +31,37 @@ pub fn yacc(tokens: TokenStream) -> TokenStream {
     };
 
     lazy_static! {
-        static ref YACC_ARG: Regex = Regex::new(r"\{(?P<format>[:#?A-z0-9\.]*);(?P<color>\w+)\}").unwrap();
+        static ref YACC_ARG: Regex = Regex::new(r"\{(?P<format>[:#?A-z0-9\.]*);(?P<color>[\w,]+)\}").unwrap();
     }
     let format_str = YACC_ARG.replace_all(&format_str, |captures: &regex::Captures| {
         let format = captures.name("format").map(|m| m.as_str()).unwrap_or("");
         let color = captures.name("color").map(|m| m.as_str());
         let format_arg = match color {
             None => format!("{{{format}}}", format=format),
-            Some("black") => format!(color_str!("{{{format}}}", "\u{001b}[30m"), format=format),
-            Some("red") => format!(color_str!("{{{format}}}", "\u{001b}[31m"), format=format),
-            Some("green") => format!(color_str!("{{{format}}}", "\u{001b}[32m"), format=format),
-            Some("yellow") => format!(color_str!("{{{format}}}", "\u{001b}[33m"), format=format),
-            Some("blue") => format!(color_str!("{{{format}}}", "\u{001b}[34m"), format=format),
-            Some("magenta") => format!(color_str!("{{{format}}}", "\u{001b}[35m"), format=format),
-            Some("cyan") => format!(color_str!("{{{format}}}", "\u{001b}[36m"), format=format),
-            Some("white") => format!(color_str!("{{{format}}}", "\u{001b}[37m"), format=format),
-            Some(c) => unimplemented!("Color {} is not supported", c),
+            Some(options) => {
+                let options: Vec<_> = options
+                    .split(',')
+                    .map(|option| {
+                        match option {
+                            "bold" => "1",
+                            "faint" => "2",
+                            "italic" => "3",
+                            "underline" => "4",
+                            "black" => "30",
+                            "red" => "31",
+                            "green" => "32",
+                            "yellow" => "33",
+                            "blue" => "34",
+                            "magenta" => "35",
+                            "cyan" => "36",
+                            "white" => "37",
+                            s => unimplemented!("Not supported: {}", s),
+                        }
+                    })
+                    .collect();
+                let options: String = options.join(";");
+                format!("\u{001b}[{colors}m{{{format}}}\u{001b}[0m", colors=options, format=format)
+            }
         };
         format_arg
     });
