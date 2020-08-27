@@ -1,6 +1,6 @@
 [package]
 name = "yacc"
-version = "0.0.1"
+version = "0.1.0"
 authors = ["Spenser Black <spenserblack01@gmail.com>"]
 edition = "2015"
 license = "MIT OR Apache-2.0"
