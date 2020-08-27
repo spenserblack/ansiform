@@ -2,7 +2,6 @@
 extern crate yacc;
 
 fn main() {
-    let none: Option<()> = None;
-    let s = format!(yacc!("{;red}{:?;yellow}{:#?;green}"), "red", none, Some("green"));
+    let s = format!(yacc!("{;red}{}{:#?;green}"), "red", "no color", Some("green"));
     println!("{}", s);
 }
