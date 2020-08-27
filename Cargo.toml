@@ -1,2 +1,19 @@
-[workspace]
-members = ["yacc", "yacc_impl"]
+[package]
+name = "yacc"
+version = "0.0.1"
+authors = ["Spenser Black <spenserblack01@gmail.com>"]
+edition = "2015"
+license = "MIT OR Apache-2.0"
+description = "Color strings with a macro"
+readme = "README.md"
+keywords = ["color", "terminal", "ansi", "macro"]
+categories = ["command-line-interface"]
+repository = "https://github.com/spenserblack/yacc"
+
+[lib]
+proc-macro = true
+
+[dependencies]
+lazy_static = "1.4"
+quote = "1.0"
+regex = "1"
