@@ -5,9 +5,6 @@ extern crate lazy_static;
 extern crate proc_macro;
 
 #[macro_use]
-extern crate proc_macro_hack;
-
-#[macro_use]
 extern crate quote;
 
 extern crate regex;
@@ -28,8 +25,8 @@ macro_rules! color_str {
     }
 }
 
-#[proc_macro_hack]
-pub fn yacc_args(tokens: TokenStream) -> TokenStream {
+#[proc_macro]
+pub fn format_str(tokens: TokenStream) -> TokenStream {
     let mut tokens = tokens.into_iter();
     let format_str = match tokens.next() {
         None => return TokenStream::from( quote! { format!() }),
@@ -60,15 +57,15 @@ pub fn yacc_args(tokens: TokenStream) -> TokenStream {
         };
         format_arg
     });
+    let format_str = format_str.to_string();
+    let format_str = format_str.as_str();
 
     let format_str = quote! {
         #format_str
     };
 
     let format_str = TokenStream::from(format_str);
-    let remaining_tokens = TokenStream::from_iter(tokens);
-    let format_args = TokenStream::from_iter(vec![format_str, remaining_tokens].into_iter());
 
-    let tokens = format_args;
+    let tokens = format_str;
     tokens
 }

@@ -11,5 +11,4 @@ categories = ["command-line-interface"]
 repository = "https://github.com/spenserblack/yacc"
 
 [dependencies]
-proc-macro-hack = "0.5"
 yacc_impl = { path = "../yacc_impl", version = "0.0.1" }
