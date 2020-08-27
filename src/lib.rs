@@ -26,7 +26,7 @@ macro_rules! color_str {
 }
 
 #[proc_macro]
-pub fn yacc_format(tokens: TokenStream) -> TokenStream {
+pub fn yacc_args(tokens: TokenStream) -> TokenStream {
     let mut tokens = tokens.into_iter();
     let format_str = match tokens.next() {
         None => return TokenStream::from( quote! { format!() }),
@@ -62,8 +62,7 @@ pub fn yacc_format(tokens: TokenStream) -> TokenStream {
     let format_str = TokenStream::from(format_str);
     let remaining_tokens = TokenStream::from_iter(tokens);
     let format_args = TokenStream::from_iter(vec![format_str, remaining_tokens].into_iter());
-    let format_args_group: proc_macro::TokenTree = proc_macro::Group::new(Parenthesis, format_args).into();
 
-    let all_tokens = vec![TokenStream::from_str("panic!").unwrap(), format_args_group.into()].into_iter();
-    TokenStream::from_iter(all_tokens)
+    let tokens = format_args;
+    tokens
 }
