@@ -1,7 +1,7 @@
 #[macro_use]
-extern crate yacc;
+extern crate acc;
 
 fn main() {
-    let s = format!(yacc!("{;red}{}{:#?;green}"), "red", "no color", Some("green"));
+    let s = format!(acc!("{;red}{}{:#?;green}"), "red", "no color", Some("green"));
     println!("{}", s);
 }

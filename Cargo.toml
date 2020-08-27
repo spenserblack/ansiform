@@ -1,5 +1,5 @@
 [package]
-name = "yacc"
+name = "acc"
 version = "0.1.0"
 authors = ["Spenser Black <spenserblack01@gmail.com>"]
 edition = "2015"
@@ -8,7 +8,7 @@ description = "Color strings with a macro"
 readme = "README.md"
 keywords = ["color", "terminal", "ansi", "macro"]
 categories = ["command-line-interface"]
-repository = "https://github.com/spenserblack/yacc"
+repository = "https://github.com/spenserblack/acc"
 exclude = [
     ".github/*",
     ".editorconfig",

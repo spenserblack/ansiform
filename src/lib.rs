@@ -15,7 +15,7 @@ use proc_macro::{
 use regex::Regex;
 
 #[proc_macro]
-pub fn yacc(tokens: TokenStream) -> TokenStream {
+pub fn acc(tokens: TokenStream) -> TokenStream {
     let mut tokens = tokens.into_iter();
     let format_str = match tokens.next() {
         None => return TokenStream::from( quote! { format!() }),
