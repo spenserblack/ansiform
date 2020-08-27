@@ -18,6 +18,13 @@ pub fn yacc_format(tokens: TokenStream) -> TokenStream {
         _ => return TokenStream::from(quote!{ compile_error!("First argument must be a literal") }),
     };
 
+    let format_str = format_str.to_string();
+    let mut format_str = format_str.chars();
+    let format_str: String = match (format_str.next(), format_str.next_back()) {
+        (Some('"'), Some('"')) => format_str.collect(),
+        _ => return TokenStream::from(quote!{ compile_error!("First argument must be a literal string") }),
+    };
+
     let tokens = quote! {
         compile_error!("`yacc_format!` is not implemented");
     };
