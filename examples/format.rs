@@ -3,6 +3,6 @@ extern crate yacc;
 
 fn main() {
     let none: Option<()> = None;
-    let s = format!(format_str!("{;red}{:?;yellow}{:#?;green}"), "red", none, Some("green"));
+    let s = format!(yacc!("{;red}{:?;yellow}{:#?;green}"), "red", none, Some("green"));
     println!("{}", s);
 }
