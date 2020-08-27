@@ -9,6 +9,12 @@ readme = "README.md"
 keywords = ["color", "terminal", "ansi", "macro"]
 categories = ["command-line-interface"]
 repository = "https://github.com/spenserblack/yacc"
+exclude = [
+    ".github/*",
+    ".editorconfig",
+    ".gitignore",
+    ".travis.yml",
+]
 
 [lib]
 proc-macro = true
