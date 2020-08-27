@@ -17,6 +17,7 @@ use proc_macro::{
 };
 use regex::Regex;
 use std::iter::FromIterator;
+use std::str::FromStr;
 
 macro_rules! color_str {
     ($s:literal, $color:literal $(,)?) => {
@@ -62,8 +63,7 @@ pub fn yacc_format(tokens: TokenStream) -> TokenStream {
     let remaining_tokens = TokenStream::from_iter(tokens);
     let format_args = TokenStream::from_iter(vec![format_str, remaining_tokens].into_iter());
     let format_args_group: proc_macro::TokenTree = proc_macro::Group::new(Parenthesis, format_args).into();
-    let format_macro: proc_macro::TokenTree = proc_macro::Ident::new("format!", Span::call_site()).into();
 
-    let all_tokens = vec![format_macro, format_args_group].into_iter();
+    let all_tokens = vec![TokenStream::from_str("panic!").unwrap(), format_args_group.into()].into_iter();
     TokenStream::from_iter(all_tokens)
 }
