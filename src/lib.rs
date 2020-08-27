@@ -42,7 +42,7 @@ pub fn yacc_format(tokens: TokenStream) -> TokenStream {
     };
 
     lazy_static! {
-        static ref YACC_ARG: Regex = Regex::new(r"\{(P<format>.*);(P<color>.+)\}").unwrap();
+        static ref YACC_ARG: Regex = Regex::new(r"\{(?P<format>.*);(?P<color>.+)\}").unwrap();
     }
     let format_str = YACC_ARG.replace_all(&format_str, |captures: &regex::Captures| {
         let format = captures.name("format").map(|m| m.as_str()).unwrap_or("");
