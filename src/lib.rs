@@ -15,7 +15,7 @@ pub fn yacc_format(tokens: TokenStream) -> TokenStream {
     let format_str = match tokens.next() {
         None => return TokenStream::from( quote! { format!() }),
         Some(Literal(literal)) => literal,
-        _ => panic!("First argument must be a literal"),
+        _ => return TokenStream::from(quote!{ compile_error!("First argument must be a literal") }),
     };
 
     let tokens = quote! {
