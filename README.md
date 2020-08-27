@@ -11,8 +11,6 @@ This crate provides macros for coloring strings, allowing ANSI colors to be set 
 # Example
 
 ```rust
-use yacc::yacc_println;
-
-yacc_println!("It {;green}!", "works");
-yacc_println!("Warning: {:#?;yellow}!", Err(()));
+println!(yacc!("It {;green}!"), "works");
+println!(yacc!("Warning: {:#?;yellow}!"), Err(()));
 ```
