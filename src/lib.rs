@@ -18,5 +18,9 @@ pub fn yacc_format(tokens: TokenStream) -> TokenStream {
         _ => panic!("First argument must be a literal"),
     };
 
-    TokenStream::new()
+    let tokens = quote! {
+        compile_error!("`yacc_format!` is not implemented");
+    };
+
+    TokenStream::from(tokens)
 }
