@@ -38,10 +38,10 @@ pub fn ansi(tokens: TokenStream) -> TokenStream {
     };
 
     lazy_static! {
-        static ref YACC_ARG: Regex =
+        static ref ANSI_ARG: Regex =
             Regex::new(r"\{(?P<format>[:#?A-z0-9\.]*);(?P<color>[\w,]+)\}").unwrap();
     }
-    let format_str = YACC_ARG.replace_all(&format_str, |captures: &regex::Captures| {
+    let format_str = ANSI_ARG.replace_all(&format_str, |captures: &regex::Captures| {
         let format = captures.name("format").map(|m| m.as_str()).unwrap_or("");
         let color = captures.name("color").map(|m| m.as_str());
         let format_arg = match color {
