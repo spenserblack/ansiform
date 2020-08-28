@@ -1,8 +1,8 @@
-# ACC
+# AnsiForm
 
 [![Build Status](https://travis-ci.com/spenserblack/yacc.svg?branch=master)](https://travis-ci.com/spenserblack/yacc)
 
-Yet Another Coloring Crate
+Easily format strings with ANSI colors
 
 # What's the Difference?
 

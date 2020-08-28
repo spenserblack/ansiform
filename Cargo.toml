@@ -1,14 +1,14 @@
 [package]
-name = "acc"
+name = "ansiform"
 version = "0.1.0"
 authors = ["Spenser Black <spenserblack01@gmail.com>"]
 edition = "2015"
 license = "MIT OR Apache-2.0"
-description = "Color strings with a macro"
+description = "Easily format strings with ANSI colors"
 readme = "README.md"
 keywords = ["color", "terminal", "ansi", "macro"]
 categories = ["command-line-interface"]
-repository = "https://github.com/spenserblack/acc"
+repository = "https://github.com/spenserblack/ansiform"
 exclude = [
     ".github/*",
     ".editorconfig",

@@ -1,6 +1,6 @@
 #[macro_use]
-extern crate acc;
+extern crate ansiform;
 
 fn main() {
-    println!(acc!("{first;red,underline,faint} to {0;bold,green,italic}"), 100, first=0);
+    println!(ansi!("{first;underline,red,italic} to {0;bold,green,italic}"), 100, first=0);
 }
