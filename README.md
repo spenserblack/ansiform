@@ -11,8 +11,10 @@ This crate provides a macro for coloring strings, allowing ANSI colors to be set
 # Example
 
 ```rust
-println!(acc!("It {;green,bold}!"), "works");
-println!(acc!("Warning: {:#?;yellow}!"), Err(()));
+use ansiform::ansi;
+
+println!(ansi!("It {;green,bold}!"), "works");
+println!(ansi!("Warning: {:#?;yellow}!"), Some("warning"));
 ```
 
 ## Features

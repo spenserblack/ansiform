@@ -1,3 +1,7 @@
+#[cfg(doctest)]
+#[macro_use]
+extern crate doc_comment;
+
 #[macro_use]
 extern crate lazy_static;
 
@@ -77,3 +81,6 @@ pub fn ansi(tokens: TokenStream) -> TokenStream {
     let tokens = format_str;
     tokens
 }
+
+#[cfg(doctest)]
+doctest!("../README.md");
