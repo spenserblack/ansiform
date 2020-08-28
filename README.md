@@ -4,8 +4,6 @@
 
 Easily format strings with ANSI colors
 
-# What's the Difference?
-
 This crate provides a macro for coloring strings, allowing ANSI colors to be set at compile time
 instead of runtime.
 
