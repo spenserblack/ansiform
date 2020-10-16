@@ -15,7 +15,8 @@ use proc_macro::TokenStream;
 use regex::Regex;
 use syn::LitStr;
 
-/// Adds ANSI escape codes to a formatting string, allowing ANSI colors to be set at compile time instead of runtime.
+/// Adds ANSI escape codes to a formatting string, allowing ANSI colors to be
+/// set at compile time instead of runtime.
 ///
 /// # Example
 ///
