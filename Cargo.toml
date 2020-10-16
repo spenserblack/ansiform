@@ -1,6 +1,6 @@
 [package]
 name = "ansiform"
-version = "0.1.0"
+version = "0.1.1"
 authors = ["Spenser Black <spenserblack01@gmail.com>"]
 edition = "2015"
 license = "MIT OR Apache-2.0"
