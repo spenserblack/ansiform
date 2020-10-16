@@ -50,10 +50,12 @@ pub fn ansi(tokens: TokenStream) -> TokenStream {
                 let options: Vec<_> = options
                     .split(',')
                     .map(|option| match option {
+                        // styles
                         "bold" => "1",
                         "faint" => "2",
                         "italic" => "3",
                         "underline" => "4",
+                        // foreground colors
                         "black" => "30",
                         "red" => "31",
                         "green" => "32",
@@ -62,6 +64,16 @@ pub fn ansi(tokens: TokenStream) -> TokenStream {
                         "magenta" => "35",
                         "cyan" => "36",
                         "white" => "37",
+                        // background colors
+                        "on_black" => "40",
+                        "on_red" => "41",
+                        "on_green" => "42",
+                        "on_yellow" => "43",
+                        "on_blue" => "44",
+                        "on_magenta" => "45",
+                        "on_cyan" => "46",
+                        "on_white" => "47",
+                        // other
                         s => unimplemented!("Not supported: {}", s),
                     })
                     .collect();
