@@ -4,16 +4,15 @@ extern crate doc_comment;
 
 #[macro_use]
 extern crate lazy_static;
-
 extern crate proc_macro;
-
 #[macro_use]
 extern crate quote;
-
 extern crate regex;
+extern crate syn;
 
-use proc_macro::{TokenStream, TokenTree::*};
+use proc_macro::TokenStream;
 use regex::Regex;
+use syn::{parse_macro_input, LitStr};
 
 /// Adds ANSI escape codes to a formatting string, allowing ANSI colors to be set at compile time instead of runtime.
 ///
@@ -27,25 +26,7 @@ use regex::Regex;
 /// ```
 #[proc_macro]
 pub fn ansi(tokens: TokenStream) -> TokenStream {
-    let mut tokens = tokens.into_iter();
-    let format_str = match tokens.next() {
-        None => return TokenStream::from(quote! { format!() }),
-        Some(Literal(literal)) => literal,
-        _ => {
-            return TokenStream::from(quote! { compile_error!("First argument must be a literal") })
-        }
-    };
-
-    let format_str = format_str.to_string();
-    let mut format_str = format_str.chars();
-    let format_str: String = match (format_str.next(), format_str.next_back()) {
-        (Some('"'), Some('"')) => format_str.collect(),
-        _ => {
-            return TokenStream::from(
-                quote! { compile_error!("First argument must be a literal string") },
-            )
-        }
-    };
+    let format_str = parse_macro_input!(tokens as LitStr).value();
 
     lazy_static! {
         static ref ANSI_ARG: Regex =
@@ -117,17 +98,12 @@ pub fn ansi(tokens: TokenStream) -> TokenStream {
         };
         format_arg
     });
-    let format_str = format_str.to_string();
-    let format_str = format_str.as_str();
 
-    let format_str = quote! {
+    let tokens = quote! {
         #format_str
     };
 
-    let format_str = TokenStream::from(format_str);
-
-    let tokens = format_str;
-    tokens
+    TokenStream::from(tokens)
 }
 
 #[cfg(doctest)]
