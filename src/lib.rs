@@ -18,9 +18,9 @@ use regex::Regex;
 /// Adds ANSI escape codes to a formatting string, allowing ANSI colors to be set at compile time instead of runtime.
 ///
 /// # Example
+///
 /// ```rust
 /// # use ansiform::ansi;
-///
 /// println!(ansi!("It {;green,bold}!"), "works");
 /// println!(ansi!("{:#?;black,on bright white}!"), "Notes");
 /// println!(ansi!("Warning: {:#?;yellow}!"), Some("warning"));
