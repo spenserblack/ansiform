@@ -23,7 +23,7 @@ use regex::Regex;
 /// use ansiform::ansi;
 /// 
 /// println!(ansi!("It {;green,bold}!"), "works");
-/// println!(ansi!("{:#?;black,on_white}!"), "Notes");
+/// println!(ansi!("{:#?;black,on bright white}!"), "Notes");
 /// println!(ansi!("Warning: {:#?;yellow}!"), Some("warning"));
 /// ```
 #[proc_macro]
@@ -50,7 +50,7 @@ pub fn ansi(tokens: TokenStream) -> TokenStream {
 
     lazy_static! {
         static ref ANSI_ARG: Regex =
-            Regex::new(r"\{(?P<format>[:#?A-z0-9\.]*);(?P<color>[\w,]+)\}").unwrap();
+            Regex::new(r"\{(?P<format>[:#?A-z0-9\.]*);(?P<color>[\w, ]+)\}").unwrap();
     }
     let format_str = ANSI_ARG.replace_all(&format_str, |captures: &regex::Captures| {
         let format = captures.name("format").map(|m| m.as_str()).unwrap_or("");
@@ -75,35 +75,35 @@ pub fn ansi(tokens: TokenStream) -> TokenStream {
                         "magenta" => "35",
                         "cyan" => "36",
                         "white" => "37",
-                        "brightblack" => "90",
+                        "bright black" => "90",
                         "gray" => "90",
                         "grey" => "90",
-                        "brightred" => "91",
-                        "brightgreen" => "92",
-                        "brightyellow" => "93",
-                        "brightblue" => "94",
-                        "brightmagenta" => "95",
-                        "brightcyan" => "96",
-                        "brightwhite" => "97",
+                        "bright red" => "91",
+                        "bright green" => "92",
+                        "bright yellow" => "93",
+                        "bright blue" => "94",
+                        "bright magenta" => "95",
+                        "bright cyan" => "96",
+                        "bright white" => "97",
                         // background colors
-                        "on_black" => "40",
-                        "on_red" => "41",
-                        "on_green" => "42",
-                        "on_yellow" => "43",
-                        "on_blue" => "44",
-                        "on_magenta" => "45",
-                        "on_cyan" => "46",
-                        "on_white" => "47",
-                        "on_brightblack" => "100",
-                        "on_gray" => "100",
-                        "on_grey" => "100",
-                        "on_brightred" => "101",
-                        "on_brightgreen" => "102",
-                        "on_brightyellow" => "103",
-                        "on_brightblue" => "104",
-                        "on_brightmagenta" => "105",
-                        "on_brightcyan" => "106",
-                        "on_brightwhite" => "107",
+                        "on black" => "40",
+                        "on red" => "41",
+                        "on green" => "42",
+                        "on yellow" => "43",
+                        "on blue" => "44",
+                        "on magenta" => "45",
+                        "on cyan" => "46",
+                        "on white" => "47",
+                        "on bright black" => "100",
+                        "on gray" => "100",
+                        "on grey" => "100",
+                        "on bright red" => "101",
+                        "on bright green" => "102",
+                        "on bright yellow" => "103",
+                        "on bright blue" => "104",
+                        "on bright magenta" => "105",
+                        "on bright cyan" => "106",
+                        "on bright white" => "107",
                         // other
                         s => unimplemented!("Not supported: {}", s),
                     })
