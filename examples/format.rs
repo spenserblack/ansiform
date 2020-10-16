@@ -3,8 +3,9 @@ extern crate ansiform;
 
 fn main() {
     let s = format!(
-        ansi!("{;red}{}{:#?;green}"),
+        ansi!("{;red}{;black,on bright white}{}{:#?;green}"),
         "red",
+        "black on bright white",
         "no color",
         Some("green"),
     );
