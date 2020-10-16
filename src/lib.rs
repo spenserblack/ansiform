@@ -8,11 +8,12 @@ extern crate proc_macro;
 #[macro_use]
 extern crate quote;
 extern crate regex;
+#[macro_use]
 extern crate syn;
 
 use proc_macro::TokenStream;
 use regex::Regex;
-use syn::{parse_macro_input, LitStr};
+use syn::LitStr;
 
 /// Adds ANSI escape codes to a formatting string, allowing ANSI colors to be set at compile time instead of runtime.
 ///
