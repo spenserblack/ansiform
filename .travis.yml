@@ -9,7 +9,3 @@ jobs:
   fast_finish: true
 notifications:
   email: false
-script:
-  - cargo build --verbose
-  - cargo build --verbose --all-features
-  - cargo test --verbose --all-features
