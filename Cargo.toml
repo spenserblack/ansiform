@@ -28,7 +28,7 @@ regex = "1"
 [dependencies.syn]
 version = "1.0"
 default-features = false
-features = ["derive", "full", "parsing", "proc-macro"]
+features = ["parsing", "proc-macro"]
 
 [dev-dependencies]
 doc-comment = "0.3"
