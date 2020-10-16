@@ -26,8 +26,7 @@ use syn::{parse_macro_input, LitStr};
 /// ```
 #[proc_macro]
 pub fn ansi(tokens: TokenStream) -> TokenStream {
-    let format_str = parse_macro_input!(tokens as LitStr);
-    let format_str = format_str.value();
+    let format_str = parse_macro_input!(tokens as LitStr).value();
 
     lazy_static! {
         static ref ANSI_ARG: Regex =
