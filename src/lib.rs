@@ -18,7 +18,6 @@ use regex::Regex;
 /// Adds ANSI escape codes to a formatting string, allowing ANSI colors to be set at compile time instead of runtime.
 ///
 /// # Example
-///
 /// ```rust
 /// # use ansiform::ansi;
 ///
