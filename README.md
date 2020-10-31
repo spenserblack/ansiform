@@ -3,7 +3,7 @@
 [![Crates.io](https://img.shields.io/crates/v/ansiform)](https://crates.io/crates/ansiform)
 [![Docs.rs](https://docs.rs/ansiform/badge.svg)](https://docs.rs/ansiform)
 ![Crates.io](https://img.shields.io/crates/d/ansiform)
-[![Build Status](https://travis-ci.com/spenserblack/yacc.svg?branch=master)](https://travis-ci.com/spenserblack/yacc)
+[![Build Status](https://travis-ci.com/spenserblack/ansiform.svg?branch=master)](https://travis-ci.com/spenserblack/ansiform)
 
 Easily format strings with ANSI colors
 
