@@ -1,3 +1,11 @@
+//! ```rust,no_run
+//! # use ansiform::ansi;
+//! println!(ansi!("It {;green,bold}!"), "works");
+//! println!(
+//!     ansi!("It {kw;italic} be too different from what you're used to :)"),
+//!     kw="shouldn't",
+//! );
+//! ```
 #[cfg(doctest)]
 #[macro_use]
 extern crate doc_comment;
