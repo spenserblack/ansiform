@@ -2,6 +2,10 @@
 
 ## [Unreleased]
 
+### Added
+
+- `inverse`/`inverted` styles ([@toothbrush7777777], [#8][pr-8])
+
 ## [0.1.1]
 
 ### Added
@@ -23,5 +27,6 @@
 [Unreleased]: https://github.com/spenserblack/ansiform/compare/v0.1.1...HEAD
 [0.1.1]: https://github.com/spenserblack/ansiform/compare/v0.1.0...v0.1.1
 [@toothbrush7777777]: https://github.com/toothbrush7777777
+[pr-8]: https://github.com/spenserblack/ansiform/pull/8
 [pr-6]: https://github.com/spenserblack/ansiform/pull/6
 [pr-5]: https://github.com/spenserblack/ansiform/pull/5
