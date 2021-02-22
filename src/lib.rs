@@ -48,6 +48,8 @@ pub fn ansi(tokens: TokenStream) -> TokenStream {
                         "faint" => "2",
                         "italic" => "3",
                         "underline" => "4",
+                        "inverse" => "7",
+                        "inverted" => "7",
                         // foreground colors
                         "black" => "30",
                         "red" => "31",

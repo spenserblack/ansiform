@@ -37,6 +37,7 @@ multiple modifiers separated by `,`. So, to print debug format in underlined ita
 - faint
 - italic
 - underline
+- inverse/inverted
 
 ### Foreground Colors
 
