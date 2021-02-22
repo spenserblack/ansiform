@@ -20,7 +20,7 @@ use syn::LitStr;
 ///
 /// # Example
 ///
-/// ```rust
+/// ```rust,no_run
 /// # use ansiform::ansi;
 /// println!(ansi!("It {;green,bold}!"), "works");
 /// println!(ansi!("{:#?;black,on bright white}!"), "Notes");
