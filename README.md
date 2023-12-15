@@ -10,6 +10,15 @@ Easily format strings with ANSI colors
 This crate provides a macro for coloring strings, allowing ANSI colors to be set at compile time
 instead of runtime.
 
+> [!CAUTION]
+> There is a very good chance that you do *not* want to set styling at compile-time.
+> This can result in styling that was compiled on one system being forced when the
+> executable is distributed to another system. For maximum compatibility, it is recommended
+> to use a library that sets styling at runtime, and detects if styling should be applied.
+>
+> You should only use this library if you understand what it means to apply styling at
+> compile-time, and find that behavior preferable for your use.
+
 # Example
 
 ```rust
@@ -80,12 +89,3 @@ multiple modifiers separated by `,`. So, to print debug format in underlined ita
 - on bright magenta
 - on bright cyan
 - on bright white
-
-> [!CAUTION]
-> There is a very good chance that you do *not* want to set styling at compile-time.
-> This can result in styling that was compiled on one system being forced when the
-> executable is distributed to another system. For maximum compatibility, it is recommended
-> to use a library that sets styling at runtime, and detects if styling should be applied.
->
-> You should only use this library if you understand what it means to apply styling at
-> compile-time, and find that behavior preferable for your use.
